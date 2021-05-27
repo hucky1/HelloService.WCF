@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 
-namespace HelloService
+namespace UserService
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени интерфейса "IService1" в коде и файле конфигурации.
     [ServiceContract]
@@ -16,17 +16,24 @@ namespace HelloService
         //  1) simple string response
         //  2) URL that accepts a parameter number
         //  3) a URL that will be return a full object to the browser in JSON-formatted text.
-        [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "SayHello/")]
-        string SayHello();
+       
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetData/{value}")]
         string GetData(string value);
 
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetModelObject/{id}/")]
-        HelloObject GetModelObject(string id);
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetAllUsers")]
+        UserDTO GetAllUsers();
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetUsersByName/{name}")]
+        UserDTO GetUsersByName(string name);
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetUserById/{id}")]
+        UserDTO GetUserById(string id);
+
         // TODO: Добавьте здесь операции служб
     }
 
